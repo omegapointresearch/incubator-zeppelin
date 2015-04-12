@@ -13,23 +13,23 @@
  */
 
 body {
-  background: #ecf0f1;
+  background: #151924;
 }
 
 /**
  * Box and well
  */
-.box{
+.box {
   border-style: solid;
   min-height: 20px;
   padding: 19px;
   margin-bottom: 20px;
 }
 
-.box, 
+.box,
 .well {
-  background-color: #ffffff;
-  border-color: #e5e5e5;
+  background-color: #262f3f;
+  border-color: #1b222f;
   border-width: 1px 1px 2px;
   border-radius: 3px;
   -webkit-box-shadow: none;
@@ -41,10 +41,10 @@ body {
 }
 
 .noteAction {
-  background-color: white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  /*background-color: white;*/
+  /*box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);*/
   color: #2c3e50;
-  border-bottom: 1px solid #E5E5E5;
+  /*border-bottom: 1px solid #E5E5E5;*/
 }
 
 .control span {
@@ -64,4 +64,19 @@ body {
 .executionTime,
 .nv-controlsWrap {
   display:block;
+}
+
+.btn-default {
+  color: #d8d8d8 !important;
+  background: none !important;
+  border: none !important;
+}
+
+.nvd3 .nv-axis line {
+  stroke: #969696 !important;
+  opacity: 0.3;
+}
+
+svg text {
+  fill: #d8d8d8 !important;
 }

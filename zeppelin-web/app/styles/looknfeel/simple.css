@@ -1,4 +1,5 @@
-/*
+/* Copyright 2014 NFLabs
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -12,14 +13,11 @@
  * limitations under the License.
  */
 
+/*
 body {
   background: white;
 }
 
-
-/**
- * Box and well
- */
 .box{
   border: 1px solid white;
   min-height: 20px;
@@ -38,13 +36,40 @@ body {
 .paragraph-col{
   border: 2px solid white;
 }
+*/
+body {
+  background: #151924;
+}
+
+.btn-default {
+  color: #d8d8d8 !important;
+  background: none !important;
+  border: none !important;
+}
+
+.box{
+  border-style: solid;
+  min-height: 20px;
+  padding: 19px;
+  margin-bottom: 20px;
+}
+
+.box,
+.well {
+  background-color: #262f3f;
+  border-color: #1b222f;
+  border-width: 1px 1px 2px;
+  border-radius: 3px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
 
 .paragraph {
   min-height: 32px;
 }
 
 .paragraph-space {
-  padding: 0px 2px 0px 2px !important;
+  padding: 0 2px 0 2px !important;
 }
 
 
@@ -70,4 +95,13 @@ body {
 .executionTime,
 .nv-controlsWrap {
   display:block;
+}
+
+.nvd3 .nv-axis line {
+  stroke: #969696 !important;
+  opacity: 0.3;
+}
+
+svg text {
+  fill: #d8d8d8 !important;
 }
