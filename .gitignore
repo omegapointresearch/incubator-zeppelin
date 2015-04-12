@@ -32,6 +32,7 @@ drivers/
 warehouse/
 notebook/
 local-repo/
+spark/dependency-reduced-pom.xml
 
 **/sessions/
 **/data/
