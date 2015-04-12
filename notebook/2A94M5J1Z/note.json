@@ -24,7 +24,7 @@
       "result": {
         "code": "SUCCESS",
         "type": "HTML",
-        "msg": "\u003ch2\u003eWelcome to Zeppelin.\u003c/h2\u003e\n\u003ch5\u003eThis is a live tutorial, you can run the code yourself. (Shift-Enter to Run)\u003c/h5\u003e\n"
+        "msg": "\u003ch2\u003eWelcome to Archimedes Toolbox.\u003c/h2\u003e\n\u003ch5\u003eThis is a live tutorial, you can run the code yourself. (Shift-Enter to Run)\u003c/h5\u003e\n"
       },
       "dateCreated": "Feb 13, 2015 11:16:21 PM",
       "dateStarted": "Apr 1, 2015 9:11:09 PM",
@@ -46,7 +46,8 @@
           "groups": [],
           "scatter": {}
         },
-        "title": true
+        "title": true,
+        "tableHide": false
       },
       "settings": {
         "params": {},
@@ -333,6 +334,7 @@
   ],
   "name": "Zeppelin Tutorial",
   "id": "2A94M5J1Z",
+  "angularObjects": {},
   "config": {
     "looknfeel": "default"
   },
