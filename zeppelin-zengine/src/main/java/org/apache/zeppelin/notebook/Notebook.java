@@ -87,10 +87,20 @@ public class Notebook {
    * @throws IOException
    */
   public Note createNote() throws IOException {
+    return createNote("");
+  }
+
+  /**
+   * Create new note.
+   *
+   * @return
+   * @throws IOException
+   */
+  public Note createNote(String userId) throws IOException {
     if (conf.getBoolean(ConfVars.ZEPPELIN_NOTEBOOK_AUTO_INTERPRETER_BINDING)) {
-      return createNote(replFactory.getDefaultInterpreterSettingList());
+      return createNote(replFactory.getDefaultInterpreterSettingList(), userId);
     } else {
-      return createNote(null);
+      return createNote(null, userId);
     }
   }
 
@@ -100,9 +110,9 @@ public class Notebook {
    * @return
    * @throws IOException
    */
-  public Note createNote(List<String> interpreterIds) throws IOException {
+  public Note createNote(List<String> interpreterIds, String userId) throws IOException {
     NoteInterpreterLoader intpLoader = new NoteInterpreterLoader(replFactory);
-    Note note = new Note(conf, intpLoader, jobListenerFactory, quartzSched);
+    Note note = new Note(conf, intpLoader, jobListenerFactory, quartzSched, userId);
     intpLoader.setNoteId(note.id());
     synchronized (notes) {
       notes.put(note.id(), note);

@@ -57,6 +57,7 @@ public class Note implements Serializable, JobListener {
   List<Paragraph> paragraphs = new LinkedList<Paragraph>();
   private String name;
   private String id;
+  private String userId;
 
   Map<String, List<AngularObject>> angularObjects = new HashMap<String, List<AngularObject>>();
 
@@ -81,10 +82,11 @@ public class Note implements Serializable, JobListener {
   public Note() {}
 
   public Note(ZeppelinConfiguration conf, NoteInterpreterLoader replLoader,
-      JobListenerFactory jobListenerFactory, org.quartz.Scheduler quartzSched) {
+      JobListenerFactory jobListenerFactory, org.quartz.Scheduler quartzSched, String userId) {
     this.conf = conf;
     this.replLoader = replLoader;
     this.jobListenerFactory = jobListenerFactory;
+    this.userId = userId;
     generateId();
   }
 

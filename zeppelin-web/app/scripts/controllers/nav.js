@@ -40,7 +40,7 @@ angular.module('zeppelinWebApp').controller('NavCtrl', function($scope, $rootSco
 
   /** Create a new note */
   $scope.createNewNote = function() {
-    $rootScope.$emit('sendNewEvent', {op: 'NEW_NOTE'});
+    $rootScope.$emit('sendNewEvent', {op: 'NEW_NOTE', userId: 'testId'});
   };
 
   /** Check if the note url is equal to the current note */

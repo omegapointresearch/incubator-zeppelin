@@ -24,10 +24,12 @@
  */
 angular.module('zeppelinWebApp')
         .controller('MainCtrl', function($scope, WebSocket, $rootScope, $window) {
-  $rootScope.compiledScope = $scope.$new(true, $rootScope);  
+  $rootScope.compiledScope = $scope.$new(true, $rootScope);
   $scope.WebSocketWaitingList = [];
   $scope.connected = false;
   $scope.looknfeel = 'default';
+
+  $rootScope.userId = 'testId';
 
   var init = function() {
     $scope.asIframe = (($window.location.href.indexOf('asIframe') > -1) ? true : false);
