@@ -276,6 +276,7 @@ public class NotebookServer extends WebSocketServer implements
       Map<String, String> info = new HashMap<String, String>();
       info.put("id", note.id());
       info.put("name", note.getName());
+      info.put("userId", note.userId());
       notesInfo.add(info);
     }
     broadcastAll(new Message(OP.NOTES_INFO).put("notes", notesInfo));
@@ -338,10 +339,12 @@ public class NotebookServer extends WebSocketServer implements
   private void createNote(WebSocket conn, Notebook notebook, Message fromMessage)
       throws IOException {
     String userId = (String) fromMessage.get("userId");
+    Note note;
     if (userId == null) {
-      userId = "";
+      note = notebook.createNote();
+    } else {
+      note = notebook.createNote(userId);
     }
-    Note note = notebook.createNote(userId);
     note.addParagraph(); // it's an empty note. so add one paragraph
     note.persist();
     broadcastNote(note);

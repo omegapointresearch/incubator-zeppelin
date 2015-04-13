@@ -82,6 +82,14 @@ public class Note implements Serializable, JobListener {
   public Note() {}
 
   public Note(ZeppelinConfiguration conf, NoteInterpreterLoader replLoader,
+              JobListenerFactory jobListenerFactory, org.quartz.Scheduler quartzSched) {
+    this.conf = conf;
+    this.replLoader = replLoader;
+    this.jobListenerFactory = jobListenerFactory;
+    generateId();
+  }
+
+  public Note(ZeppelinConfiguration conf, NoteInterpreterLoader replLoader,
       JobListenerFactory jobListenerFactory, org.quartz.Scheduler quartzSched, String userId) {
     this.conf = conf;
     this.replLoader = replLoader;
@@ -96,6 +104,10 @@ public class Note implements Serializable, JobListener {
 
   public String id() {
     return id;
+  }
+
+  public String userId() {
+    return userId;
   }
 
   public String getName() {
