@@ -105,6 +105,10 @@ angular
       .when('/', {
         templateUrl: 'views/main.html'
       })
+      .when('/login', {
+        templateUrl: 'views/login.html',
+        controller: 'LoginCtrl'
+      })
       .when('/notebook/:noteId', {
         templateUrl: 'views/notebooks.html',
         controller: 'NotebookCtrl'
@@ -120,6 +124,37 @@ angular
       .otherwise({
         redirectTo: '/'
       });
+  })
+  .factory('authInterceptor', function ($rootScope, $q, $cookieStore, $location) {
+    return {
+      // Add tokens to headers
+      'request': function (config) {
+        config.headers = config.headers || {};
+        if ($cookieStore.get('token')) {
+          config.headers.Authorization = 'Bearer ' + $cookieStore.get('token');
+        }
+        return config;
+      },
+
+      // Intercept failures
+      'responseError': function (response) {
+        if (response.status == 401) {
+          $location.path('/login');
+          $cookieStore.remove('token');
+        }
+
+        $q.reject(response);
+      }
+    };
+  })
+    .run(function ($rootScope, $location, Auth) {
+  //  $rootScope.$on('$stateChangeStart', function (event, next) {
+  //    Auth.isLoggedInAsync(function (loggedIn) {
+  //      if (next.authenticate() && !loggedIn) {
+  //        $location.path('/login');
+  //      }
+  //    });
+  //  });
   });
 
 
