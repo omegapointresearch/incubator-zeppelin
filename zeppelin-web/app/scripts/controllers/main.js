@@ -26,10 +26,8 @@ angular.module('zeppelinWebApp')
         .controller('MainCtrl', function($scope, WebSocket, $rootScope, $window) {
   $rootScope.compiledScope = $scope.$new(true, $rootScope);
   $scope.WebSocketWaitingList = [];
-  $scope.connected = false;
+  $rootScope.connected = false;
   $scope.looknfeel = 'default';
-
-  $rootScope.userId = 'testId';
 
   var init = function() {
     $scope.asIframe = (($window.location.href.indexOf('asIframe') > -1) ? true : false);
@@ -41,7 +39,7 @@ angular.module('zeppelinWebApp')
    */
   WebSocket.onopen(function() {
     console.log('Websocket created');
-    $scope.connected = true;
+    $rootScope.connected = true;
     if ($scope.WebSocketWaitingList.length > 0) {
       for (var o in $scope.WebSocketWaitingList) {
         WebSocket.send(JSON.stringify($scope.WebSocketWaitingList[o]));
@@ -74,12 +72,12 @@ angular.module('zeppelinWebApp')
 
   WebSocket.onerror(function(event) {
     console.log('error message: ', event);
-    $scope.connected = false;
+    $rootScope.connected = false;
   });
 
   WebSocket.onclose(function(event) {
     console.log('close message: ', event);
-    $scope.connected = false;
+    $rootScope.connected = false;
   });
 
   /** Send info to the websocket server */

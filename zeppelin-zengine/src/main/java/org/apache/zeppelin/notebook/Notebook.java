@@ -87,7 +87,11 @@ public class Notebook {
    * @throws IOException
    */
   public Note createNote() throws IOException {
-    return createNote("");
+    if (conf.getBoolean(ConfVars.ZEPPELIN_NOTEBOOK_AUTO_INTERPRETER_BINDING)) {
+      return createNote(replFactory.getDefaultInterpreterSettingList());
+    } else {
+      return createNote(null, null);
+    }
   }
 
   /**
@@ -102,6 +106,26 @@ public class Notebook {
     } else {
       return createNote(null, userId);
     }
+  }
+
+  /**
+   * Create new note.
+   *
+   * @return
+   * @throws IOException
+   */
+  public Note createNote(List<String> interpreterIds) throws IOException {
+    NoteInterpreterLoader intpLoader = new NoteInterpreterLoader(replFactory);
+    Note note = new Note(conf, intpLoader, jobListenerFactory, quartzSched);
+    intpLoader.setNoteId(note.id());
+    synchronized (notes) {
+      notes.put(note.id(), note);
+    }
+    if (interpreterIds != null) {
+      bindInterpretersToNote(note.id(), interpreterIds);
+    }
+
+    return note;
   }
 
   /**

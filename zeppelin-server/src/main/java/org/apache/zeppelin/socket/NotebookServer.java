@@ -101,7 +101,7 @@ public class NotebookServer extends WebSocketServer implements
       /** Lets be elegant here */
       switch (messagereceived.op) {
           case LIST_NOTES:
-            broadcastNoteList();
+            broadcastNoteList(messagereceived);
             break;
           case GET_NOTE:
             sendNote(conn, notebook, messagereceived);
@@ -274,6 +274,21 @@ public class NotebookServer extends WebSocketServer implements
     List<Map<String, String>> notesInfo = new LinkedList<Map<String, String>>();
     for (Note note : notes) {
       Map<String, String> info = new HashMap<String, String>();
+      info.put("id", note.id());
+      info.put("name", note.getName());
+      info.put("userId", note.userId());
+      notesInfo.add(info);
+    }
+    broadcastAll(new Message(OP.NOTES_INFO).put("notes", notesInfo));
+  }
+
+  private void broadcastNoteList(Message fromMessage) {
+    Notebook notebook = notebook();
+    List<Note> notes = notebook.getAllNotes();
+    List<Map<String, String>> notesInfo = new LinkedList<Map<String, String>>();
+    for (Note note : notes) {
+      Map<String, String> info = new HashMap<String, String>();
+      // restrict to user
       info.put("id", note.id());
       info.put("name", note.getName());
       info.put("userId", note.userId());

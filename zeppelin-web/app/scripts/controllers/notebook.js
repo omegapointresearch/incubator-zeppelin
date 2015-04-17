@@ -41,6 +41,10 @@ angular.module('zeppelinWebApp').controller('NotebookCtrl', function($scope, $ro
     {name: '1d', value: '0 0 0 * * ?'}
   ];
 
+  if ($routeParams.userId) {
+    $rootScope.hideNav = true;
+  }
+
   $scope.interpreterSettings = [];
   $scope.interpreterBindings = [];
 
@@ -483,7 +487,7 @@ angular.module('zeppelinWebApp').controller('NotebookCtrl', function($scope, $ro
       }
       scope[varName] = data.angularObject.object;
     }
-      
+
   });
 
   var isFunction = function(functionToCheck) {

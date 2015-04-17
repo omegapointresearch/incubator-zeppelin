@@ -109,7 +109,7 @@ angular
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl'
       })
-      .when('/notebook/:noteId', {
+      .when('/notebook/:noteId/:userId?', {
         templateUrl: 'views/notebooks.html',
         controller: 'NotebookCtrl'
       })
