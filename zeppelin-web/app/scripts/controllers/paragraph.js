@@ -857,6 +857,9 @@ angular.module('zeppelinWebApp')
                         .scatter.useVoronoi(false);
     } else {
       var p = pivot(data);
+
+      console.log('pivot', p)
+
       if (type === 'pieChart') {
         var d = pivotDataToD3ChartFormat(p, true).d3g;
 
@@ -872,10 +875,16 @@ angular.module('zeppelinWebApp')
             });
           }
         }
-      } else if (type === 'multiBarChart') {
+      } else if (type === 'multiBarChart'){
         d3g = pivotDataToD3ChartFormat(p, true, false, type).d3g;
         $scope.chart[type].yAxis.axisLabelDistance(50);
-      } else if (type === 'lineChart' || type === 'stackedAreaChart') {
+      } else if (type === 'multiBarHorizontalChart') {
+        d3g = pivotDataToD3ChartFormat(p, true, false, type).d3g;
+        $scope.chart[type].barColor(["#1CB7F4", "#4416F5", "#AAABAB"]);
+        $scope.chart[type].showValues(true);
+        $scope.chart[type].showYAxis(false);
+        $scope.chart[type].valueFormat = d3.format(',.0f');
+       } else if (type === 'lineChart' || type === 'stackedAreaChart') {
         var pivotdata = pivotDataToD3ChartFormat(p, false, true);
         var xLabels = pivotdata.xLabels;
         d3g = pivotdata.d3g;

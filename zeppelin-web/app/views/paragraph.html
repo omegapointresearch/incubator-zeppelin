@@ -128,6 +128,10 @@ limitations under the License.
                 ng-class="{'active': isGraphMode('scatterChart')}"
                 ng-click="setGraphMode('scatterChart', true)"><i class="cf cf-scatter-chart"></i>
         </button>
+        <button type="button" class="btn btn-default btn-sm"
+                ng-class="{'active': isGraphMode('multiBarHorizontalChart')}"
+                ng-click="setGraphMode('multiBarHorizontalChart', true)"><i class="fa fa-bar-chart" style="transform: rotate(90deg) rotateY(180deg)"></i>
+        </button>
       </div>
       <span ng-if="getResultType()=='TABLE' && getGraphMode()!='table' && !asIframe && !viewOnly"
             style="margin-left:10px; cursor:pointer; display: inline-block; vertical-align:top; position: relative; line-height:30px;">
@@ -332,6 +336,12 @@ limitations under the License.
              id="p{{paragraph.id}}_scatterChart">
           <svg></svg>
         </div>
+
+        <div ng-if="getGraphMode()=='multiBarHorizontalChart'"
+             id="p{{paragraph.id}}_multiBarHorizontalChart">
+          <svg></svg>
+        </div>
+
       </div>
 
       <div id="{{paragraph.id}}_comment"
