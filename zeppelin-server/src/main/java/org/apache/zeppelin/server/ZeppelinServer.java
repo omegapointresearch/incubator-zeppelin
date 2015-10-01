@@ -90,9 +90,6 @@ public class ZeppelinServer extends Application {
     // Notebook server
     final ServletContextHandler notebook = setupNotebookServer(conf);
 
-    // Notebook server
-    final ServletContextHandler notebook = setupNotebookServer(conf);
-
     // Web UI
     final WebAppContext webApp = setupWebAppContext(conf);
 
