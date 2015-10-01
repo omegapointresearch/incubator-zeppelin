@@ -15,29 +15,25 @@
  * limitations under the License.
  */
 
+package org.apache.zeppelin.server;
 
-package org.apache.zeppelin.conf;
-
-import com.amazonaws.auth.AWSCredentials;
-import com.amazonaws.auth.BasicAWSCredentials;
+import com.google.gson.ExclusionStrategy;
+import com.google.gson.FieldAttributes;
+import org.apache.zeppelin.interpreter.InterpreterOption;
 
 /**
- * 
- * @author vgmartinez
- *
+ * Created by eranw on 8/30/15.
+ * Omit InterpreterOption from serialization
  */
-public class Credentials {
-  static String aws_access_key_id = System.getenv("AWS_ACCESS_KEY_ID");
-  static String aws_secret_access_key = System.getenv("AWS_SECRET_ACCESS_KEY");
-  
-  private static AWSCredentials credentials = new BasicAWSCredentials(aws_access_key_id,
-      aws_secret_access_key);
+public class JsonExclusionStrategy implements ExclusionStrategy {
 
-  public AWSCredentials getCredentials() {
-    return credentials;
+  public boolean shouldSkipClass(Class<?> arg0) {
+    //exclude only InterpreterOption
+    return InterpreterOption.class.equals(arg0);
   }
 
-  public static void setCredentials(AWSCredentials credentials) {
-    Credentials.credentials = credentials;
+  public boolean shouldSkipField(FieldAttributes f) {
+
+    return false;
   }
 }
